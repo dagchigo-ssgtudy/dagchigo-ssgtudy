@@ -4,11 +4,11 @@
 - keyword : 자료타입 핸들링
 - template :  
 ```js
-I. 정렬
+1. 정렬
  - arr.sort(a, b => { return b -a } : 내림차순 정렬
-II. 문자 split("")
+2. 문자 split("")
  - str.split("") : 문자열을 배열로 
-III. 배열조인 join("")
+3. 배열조인 join("")
  - arr.join(""): 배열을 문자열로
 ```
 
