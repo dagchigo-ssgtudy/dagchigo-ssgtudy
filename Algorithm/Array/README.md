@@ -1,5 +1,19 @@
 # Array
 
+- title : [정수 내림차순으로 배치하기]()
+- keyword : 자료타입 핸들링
+- template :  
+```js
+I. 정렬
+ - arr.sort(a, b => { return b -a } : 내림차순 정렬
+II. 문자 split("")
+ - str.split("") : 문자열을 배열로 
+III. 배열조인 join("")
+ - arr.join(""): 배열을 문자열로
+```
+
+
+=======================================
 - title : [자연수 뒤집어 배열로 만들기](https://github.com/dagchigo-ssgtudy/dagchigo-ssgtudy/blob/main/Algorithm/Array/%EC%9E%90%EC%97%B0%EC%88%98%20%EB%92%A4%EC%A7%91%EC%96%B4%20%EB%B0%B0%EC%97%B4%EB%A1%9C%20%EB%A7%8C%EB%93%A4%EA%B8%B0.html)
 - keyword : 문자열, 숫자열
 - template :  
