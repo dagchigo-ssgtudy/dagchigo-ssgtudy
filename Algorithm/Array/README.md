@@ -34,3 +34,24 @@
 여기다가 채워주세요
 ```
 =======================================
+- title : [로또위 최고순위와 최저순위](https://github.com/dagchigo-ssgtudy/dagchigo-ssgtudy/blob/main/Algorithm/Array/%EB%A1%9C%EB%98%90%EC%9D%98%20%EC%B5%9C%EA%B3%A0%EC%88%9C%EC%9C%84%EC%99%80%20%EC%B5%9C%EC%A0%80%EC%88%9C%EC%9C%84.html)
+- keyword : `등수를 찾기 위해 lottos 배열과 win_nums 배열의 동일한 요소의 갯수를 찾아야 한다.` -> 배열 내 완전탐색
+- template :
+```js
+1. Array.protytype.includes()
+  // 배열의 특넝 요소를 포함하고 있는지 판별
+ [1, 2, 3].includes(3) // true
+
+2. Array.prototype.find()
+  // 주어진 판별 함수를 만족하는 첫번째 요소의 값을 반환
+  [1, 2, 3].find((element) => element > 1) // 2
+  
+3. Array.prototype.filter()
+ // 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환
+ [1, 2, 3].filter((element) => element > 1) // [2, 3]
+ 
+4. Array.prototype.forEach()
+ // 주어진 함수를 배열 요소 각각에 대해 실행
+ [1, 2, 3].forEach((element) => element *= 2) // [2, 4, 6]
+```
+=======================================
