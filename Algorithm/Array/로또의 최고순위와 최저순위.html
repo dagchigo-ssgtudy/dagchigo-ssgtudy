@@ -1,0 +1,49 @@
+<html>
+<head>
+ <meta charset="UTF-8" />
+ <title>[프로그래머스1단계] 로또위 최고순위와 최저순위</title> 
+ 문제링크: [로또 순위 구하기](https://programmers.co.kr/learn/courses/30/lessons/77484)
+</head>
+<body>
+ <script>
+   function solution({lottos, win_nums}) {
+      /*
+      순위	  당첨 내용
+      1	    6개 번호가 모두 일치
+      2	    5개 번호가 일치
+      3	    4개 번호가 일치
+      4	    3개 번호가 일치
+      5	    2개 번호가 일치
+      6(낙첨)	그 외
+      */
+    const zero = lottos.filter((e) => e === 0).length; // 모르는 숫자의 갯수
+    let count = 0;
+    lottos.forEach((el) => { // 일치하는 수는 count 변수에 담는다
+        if(win_nums.includes(el)) count++;
+    });
+    // 최고 순위 => 0에 들어가는 수가 다 일치하는 수라고 가정
+                // 7에서 (일치하는 수 + 0의 갯수) 만큼을 빼면 순위를 알 수 있다
+    // 최저 순위 => 0에 들어가는 수가 다 일치하지 않는 수라고 가정
+                // 7에서 (일치하는 수) 만큼 뺀다
+    return [(zero + count) >= 2? 7 - (zero + count) : 6, count >= 2? 7 - count : 6];
+    }
+
+    // TEST CASE
+    let files1 = {
+      lottos : [44, 1, 0, 0, 31, 25],
+      win_nums : [31, 10, 45, 1, 6, 19]
+    } // result : [3, 5]
+    let files2 = {
+      lottos : [0, 0, 0, 0, 0, 0],
+      win_nums : [38, 19, 20, 40, 15, 25]
+    } // result : [1, 6]
+    console.log('<Test Case 1>')
+    console.log(files1)
+    console.log(solution(files1));
+    
+    console.log('<Test Caes 2>')
+      console.log(files2);
+      console.log(solutions(files2));
+ </script>
+</body>
+</html>
