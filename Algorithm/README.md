@@ -6,6 +6,8 @@
 ## Table of Contents
 - DFS
 - BFS
+- [정규표현식](https://github.com/dagchigo-ssgtudy/dagchigo-ssgtudy/tree/main/Algorithm/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D#%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D)
+- [Array](https://github.com/dagchigo-ssgtudy/dagchigo-ssgtudy/tree/main/Algorithm/Array#array)
 
 ## How to update?
 Step 1. Content select

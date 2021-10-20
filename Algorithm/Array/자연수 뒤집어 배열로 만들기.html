@@ -1,0 +1,27 @@
+<html>
+<head>
+ <meta charset="UTF-8" />
+ <title>[프로그래머스1단계]자연수 뒤집어 배열 만들기</title> 
+ 문제링크: [자연수 뒤집어 배열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12932)
+</head>
+<body>
+ <script>
+   function solution(n) {
+    n = String(n).split("").reverse()
+    n = n.map((el)=> {
+        return el*1;
+    })
+    return n
+}
+  //풀이 : 이건 뭐 간단한 문제니 풀이는 없다.
+
+
+
+
+
+   // TEST CASE
+    let n = 12345	
+   console.log(solution(n)); //test1
+ </script>
+</body>
+</html>
