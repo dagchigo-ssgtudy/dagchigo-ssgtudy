@@ -1,1 +1,229 @@
+# REACT Hooks
+
+## useState
+React에서 컴포넌트의 동적인 값을 상태라고 부른다.
+이전에는 함수 컴포넌트에서는 state 사용이 불가능하였다.
+이후 react hooks의 useState 함수로 해결되었다.
+useState는 state를 함수 컴포넌트 안에서 사용할 수 있게 해준다.
+
+```js
+import React, { useState } from 'react';
+import './App.css';
+
+const [count, setCount] = useState(0)
+
+const increaseCount () => {
+  setCount(count+1)
+}
+
+function App() {
+  return (
+   <div>
+       <div className = "react">The number is : {count}</div>
+       <button onClick={() => { increaseCount }}>plus</button>
+   </div>
+
+  )
+
+}
+
+export default App;
+```
+
+## useEffect
+useEffect는 Side Effect를 다루기 위한 기본 내장 API 함수다.
+React의 함수 컴포넌트는 Pure Function으로 작동한다.
+그저 props로 값을 받고 그에 대한 값의 출력만이 있을 뿐이다.
+
+하지만 React로 애플리케이션을 만들때는 외부 API에 요청이 필요할 경우가 생긴다.
+이 경우에는 React 입장에서는 모두 Side Effect다.
+
+useEffect에 첫번째 인자는 함수이고,
+해당 함수 내에서 Side Effect를 실행하면 된다.
+
+useEffect의 기본형은 전달된 함수를 3가지 조건에 실행시키는데,
+렌더링이 완료된 직후
+새로운 props를 전달받았을 때
+state값이 변경되었을 때 가 있다.
+
+두 번째 인자에 배열을 넣어 useEffect를 실행할 조건도 설정 가능하다.
+빈 배열을 넣으면 컴포넌트가 처음 생성될때만 useEffect가 실행된다.
+빈 배열에 state를 넣게되면 지정한 state값이 변경될때마다 useEffect가 실행된다.
+
+컴포넌트가 unmount 될 때는 clean-up 함수를 반환하여 정리하는 리소스를 만들 수 있다.
+
+Side Effect란 함수 내의 구현이 함수 외부에 영향을 끼치는 경우를 말한다.
+Pure Function이란 함수를 입력했을때 반환되는 값을 예측 가능한 함수, 즉 똑같은 값이 나오는 함수를 말한다.
+
+## useMemo와 useCallback을 배우기 전에 알아야 하는 것
+함수형 컴포넌트는 그냥 함수다. 다시 한 번 강조하자면 함수형 컴포넌트는 단지 jsx를 반환하는 함수이다.
+
+컴포넌트가 렌더링 된다는 것은 누군가가 그 함수(컴포넌트)를 호출하여서 실행되는 것을 말한다. 함수가 실행될 때마다 내부에 선언되어 있던 표현식(변수, 또다른 함수 등)도 매번 다시 선언되어 사용된다.
+
+컴포넌트는 자신의 state가 변경되거나, 부모에게서 받는 props가 변경되었을 때마다 리렌더링 된다. (심지어 하위 컴포넌트에 최적화 설정을 해주지 않으면 부모에게서 받는 props가 변경되지 않았더라도 리렌더링 되는게 기본이다. )
+
+
+
+## useMemo
+useMemo는 메모리제이션된 값을 반환한다는 문장이 핵심이다.
+만약 컴포넌트가 2개의 props를 전달받을때 한가지 props가 변경되어도
+두가지 props를 동시에 가공시켜야한다.
+변경 되지않는 props는 useMemo에 저장시켜서 이전에 계산된 값을 쓰면 된다.
+
+```js
+// App.js
+
+import Info from "./Info";
+
+const App = () => {
+  const [color, setColor] = useState("");
+  const [movie, setMovie] = useState("");
+
+  const onChangeHandler = e => {
+    if (e.target.id === "color") setColor(e.target.value);
+    else setMovie(e.target.value);
+  };
+
+  return (
+    <div className="App">
+      <div>
+        <label>
+          What is your favorite color of rainbow ?
+          <input id="color" value={color} onChange={onChangeHandler} />
+        </label>
+      </div>
+      <div>
+        What is your favorite movie among these ?
+        <label>
+          <input
+            type="radio"
+            name="movie"
+            value="Marriage Story"
+            onChange={onChangeHandler}
+          />
+          Marriage Story
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="movie"
+            value="The Fast And The Furious"
+            onChange={onChangeHandler}
+          />
+          The Fast And The Furious
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="movie"
+            value="Avengers"
+            onChange={onChangeHandler}
+          />
+          Avengers
+        </label>
+      </div>
+      <Info color={color} movie={movie} />
+    </div>
+  );
+};
+
+export default App;
+```
+
+```js
+// Info.js
+
+const getColorKor = color => {
+    console.log("getColorKor");
+    switch (color) {
+      case "red":
+        return "빨강";
+      case "orange":
+        return "주황";
+      case "yellow":
+        return "노랑";
+      case "green":
+        return "초록";
+      case "blue":
+        return "파랑";
+      case "navy":
+        return "남";
+      case "purple":
+        return "보라";
+      default:
+        return "레인보우";
+    }
+  };
+
+  const getMovieGenreKor = movie => {
+    console.log("getMovieGenreKor");
+    switch (movie) {
+      case "Marriage Story":
+        return "드라마";
+      case "The Fast And The Furious":
+        return "액션";
+      case "Avengers":
+        return "슈퍼히어로";
+      default:
+        return "아직 잘 모름";
+    }
+  };
+
+
+const Info = ({ color, movie }) => {
+  const colorKor = getColorKor(color);
+  const movieGenreKor = getMovieGenreKor(movie);
+
+  return (
+    <div className="info-wrapper">
+      제가 가장 좋아하는 색은 {colorKor} 이고, <br />
+      즐겨보는 영화 장르는 {movieGenreKor} 입니다.
+    </div>
+  );
+};
+
+export default Info;
+```
+해당 코드에서 계산함수 useMemo 내부 콜백함수에 저장시킨다.
+의존성 배열에 넘겨준 값이 변경되었을 때만 메모리제이션된 값을 다시 계산시켜준다.
+
+
+```js
+import React, { useMemo } from "react";
+
+const colorKor = useMemo(() => getColorKor(color), [color]);
+const movieGenreKor = useMemo(() => getMovieGenreKor(movie), [movie]);
+```
+
+## useCallback
+useCallback은 메모리제이션된 함수를 반환한다라는 문장이 핵심이다.
+리액트는 컴포넌트가 렌더링 될 때마다 내부에 선언되어 있던 표현식(변수, 또다른 함수 등)도 매번 다시 선언되어 사용된다.
+ App.js의 onChangeHandler 함수는 내부의 color, movie 상태값이 변경될 때마다 재선언된다는 것을 의미한다.
+ 
+이 함수를 굳이 매번 선언하기보다는 한번만 선언하고 재사용하기 위해서 useCallback을 사용한다.
+ 
+```js
+// App.js
+
+import React, { useState, useCallback } from "react";
+
+const onChangeHandler = useCallback(e => {
+    if (e.target.id === "color") setColor(e.target.value);
+    else setMovie(e.target.value);
+  }, []);
+
+```
+
+이벤트 핸들러 함수나 api를 요청하는 함수를 주로 useCallback 으로 선언한다.
+
+React.memo를 이용하여 최적화한 컴포넌트에 이러한 함수를 props로 전달하는 경우일때 
+상위 컴포넌트에서 useCallback을 사용하면 좋다.
+왜냐면 매번 재선언 된 함수는 하위 컴포넌트가 변경된 값이라고 인식하기때문이다.
+
+
+## useCallback과 useMemo의 차이점
+useMemo는 복잡한 함수의 return값을 기억해야 할 때
+useCallback은 함수 자체를 기억해야 할 때
+
+
 
