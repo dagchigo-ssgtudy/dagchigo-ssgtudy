@@ -1,4 +1,4 @@
-# REACT
+# 💎 REACT 
 
 ## CONTEXT
 
@@ -110,7 +110,13 @@ props와 state는 이러한 과정이 서로 다르지만 대략적으로 같은
 5. shouldComponentUpdate() 컴포넌트 스테이트를 업데이트를 할지 처리를 하고 
 6. componentWillUpdate() render() 다시화면이 구성된다. componentDidUpdate() 함수가 불러와짐.
 7. react는 상태변화를 감지한다. 자동으로 감지해서 shouldComponentUpdate() 불러옴
-8. 컴포넌트가 언마운트, 해제될때는 componentWillUnmount를 이용하여 처리
+8. 컴포넌트가 언마운트, 해제될때는 **componentWillUnmount** 를 이용하여 처리
 
+## 🚨 componentWillUnmount 혹은 useEffect 에서 서버로부터 데이터를 받아올 시 주의할 점
+### state 는 초기화 되어있지 않다
+1. 컴포넌트 상태값의 시작은 항상 null 이다.
+2. 비동기적으로 데이터를 처리 할 때 컴포넌트는 적어도 한 번 데이터가 불러지기 전에 렌더링 된다.
+3. 즉, 라이프사이클이 실행되는 동안 이루어지는 비동기 호출은 컴포넌트가 데이터가 로드되기 전에 렌더링이 되어 <br/>
+state 의 값을 적절히 설정해주지 undefined error 를 초래하게 된다.
 
 
