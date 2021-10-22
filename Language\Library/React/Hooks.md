@@ -1,10 +1,21 @@
 # REACT Hooks
 
 ## useState
-React에서 컴포넌트의 동적인 값을 상태라고 부른다.
-이전에는 함수 컴포넌트에서는 state 사용이 불가능하였다.
-이후 react hooks의 useState 함수로 해결되었다.
-useState는 state를 함수 컴포넌트 안에서 사용할 수 있게 해준다.
+React에서 컴포넌트의 동적인 값을 상태라고 부른다.<br/>
+이전에는 함수 컴포넌트에서는 state 사용이 불가능하였다.<br/>
+이후 react hooks의 useState 함수로 해결되었다.<br/>
+useState는 state를 함수 컴포넌트 안에서 사용할 수 있게 해준다.<br/>
+
+### 사용법
+useState를 호출하면 배열을 반환하는데,
+배열의 0번째 요소는 현재 state 변수이고, 
+1번째 요소는 이 변수를 갱신할 수 있는 함수다. 
+useState 의 인자로 넘겨주는 값은 state의 초기값이다.
+
+```js
+const [state 저장 변수, state 갱신 함수] = useState(상태 초기 값);
+```
+
 
 ```js
 import React, { useState } from 'react';
@@ -29,6 +40,7 @@ function App() {
 
 export default App;
 ```
+
 
 ## useEffect
 useEffect는 Side Effect를 다루기 위한 기본 내장 API 함수다.
