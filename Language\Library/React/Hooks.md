@@ -3,19 +3,22 @@
 ## useState
 React에서 컴포넌트의 동적인 값을 상태라고 부른다.<br/>
 이전에는 함수 컴포넌트에서는 state 사용이 불가능하였다.<br/>
-이후 react hooks의 useState 함수로 해결되었다.<br/>
+이후 React hooks의 useState 함수로 state 사용이 가능해졌다.<br/>
 useState는 state를 함수 컴포넌트 안에서 사용할 수 있게 해준다.<br/>
 
 ### 사용법
-useState를 호출하면 배열을 반환하는데,
-배열의 0번째 요소는 현재 state 변수이고, 
-1번째 요소는 이 변수를 갱신할 수 있는 함수다. 
-useState 의 인자로 넘겨주는 값은 state의 초기값이다.
+useState를 호출하면 배열을 반환하는데,<br/>
+배열의 0번째 요소는 현재 state 변수이고,<br/>
+1번째 요소는 이 변수를 갱신할 수 있는 함수다.<br/>
+useState 의 인자로 넘겨주는 값은 state의 초기값이다.<br/>
 
 ```js
 const [state 저장 변수, state 갱신 함수] = useState(상태 초기 값);
 ```
 
+코드를 실제 적용시키면 다음과 같다.<br/>
+state 저장 변수를 이용해 데이터를 표현하고,<br/>
+onClick을 통해 state 갱신 함수를 사용하여 state를 갱신한다.<br/>
 
 ```js
 import React, { useState } from 'react';
@@ -43,44 +46,64 @@ export default App;
 
 
 ## useEffect
-useEffect는 Side Effect를 다루기 위한 기본 내장 API 함수다.
-React의 함수 컴포넌트는 Pure Function으로 작동한다.
-그저 props로 값을 받고 그에 대한 값의 출력만이 있을 뿐이다.
+useEffect는 Side Effect를 다루기 위한 기본 내장 API 함수다.<br/>
+React의 함수 컴포넌트는 Pure Function으로 작동한다.<br/>
+그저 props로 값을 받고 그에 대한 값의 출력만이 있을 뿐이다.<br/>
 
-하지만 React로 애플리케이션을 만들때는 외부 API에 요청이 필요할 경우가 생긴다.
-이 경우에는 React 입장에서는 모두 Side Effect다.
+하지만 React로 애플리케이션을 만들때는 외부 API에 요청이 필요할 경우가 생긴다.<br/>
+이 경우에는 React 입장에서는 모두 Side Effect다.<br/>
 
-useEffect에 첫번째 인자는 함수이고,
-해당 함수 내에서 Side Effect를 실행하면 된다.
+Side Effect란 함수 내의 구현이 함수 외부에 영향을 끼치는 경우를 말한다.<br/>
+Pure Function이란 함수를 입력했을때 반환되는 값을 예측 가능한 함수, 즉 똑같은 값이 나오는 함수를 말한다.<br/>
 
-useEffect의 기본형은 전달된 함수를 3가지 조건에 실행시키는데,
-렌더링이 완료된 직후
-새로운 props를 전달받았을 때
-state값이 변경되었을 때 가 있다.
+useEffect에 첫번째 인자는 함수이고,<br/>
+해당 함수 내에서 Side Effect를 실행하면 된다.<br/>
 
-두 번째 인자에 배열을 넣어 useEffect를 실행할 조건도 설정 가능하다.
-빈 배열을 넣으면 컴포넌트가 처음 생성될때만 useEffect가 실행된다.
-빈 배열에 state를 넣게되면 지정한 state값이 변경될때마다 useEffect가 실행된다.
+useEffect의 기본형은 전달된 함수를 3가지 조건에 실행시키는데,<br/>
+렌더링이 완료된 직후<br/>
+새로운 props를 전달받았을 때<br/>
+state값이 변경되었을 때 가 있다.<br/>
 
-컴포넌트가 unmount 될 때는 clean-up 함수를 반환하여 정리하는 리소스를 만들 수 있다.
+```js
+useEffect (() => {
+  //sideEffect
+})
+```
 
-Side Effect란 함수 내의 구현이 함수 외부에 영향을 끼치는 경우를 말한다.
-Pure Function이란 함수를 입력했을때 반환되는 값을 예측 가능한 함수, 즉 똑같은 값이 나오는 함수를 말한다.
+두 번째 인자에 배열을 넣어 useEffect를 실행할 조건도 설정 가능하다.<br/>
+빈 배열을 넣으면 컴포넌트가 처음 생성될때만 useEffect가 실행된다.<br/>
+빈 배열에 state를 넣게되면 지정한 state값이 변경될때마다 useEffect가 실행된다.<br/>
+
+```js
+useEffect (() => {
+  //sideEffect
+}, [])
+
+...
+
+useEffect (() => {
+  //sideEffect
+}, [state])
+
+```
+
+컴포넌트가 unmount 될 때는 clean-up 함수를 반환하여 정리하는 리소스를 만들 수 있다.<br/>
+
 
 ## useMemo와 useCallback을 배우기 전에 알아야 하는 것
-함수형 컴포넌트는 그냥 함수다. 다시 한 번 강조하자면 함수형 컴포넌트는 단지 jsx를 반환하는 함수이다.
+함수형 컴포넌트는 그냥 함수다. 다시 한 번 강조하자면 함수형 컴포넌트는 단지 jsx를 반환하는 함수이다.<br/>
 
-컴포넌트가 렌더링 된다는 것은 누군가가 그 함수(컴포넌트)를 호출하여서 실행되는 것을 말한다. 함수가 실행될 때마다 내부에 선언되어 있던 표현식(변수, 또다른 함수 등)도 매번 다시 선언되어 사용된다.
+컴포넌트가 렌더링 된다는 것은 누군가가 그 함수(컴포넌트)를 호출하여서 실행되는 것을 말한다.<br/> 
+함수가 실행될 때마다 내부에 선언되어 있던 표현식(변수, 또다른 함수 등)도 매번 다시 선언되어 사용된다.<br/>
 
-컴포넌트는 자신의 state가 변경되거나, 부모에게서 받는 props가 변경되었을 때마다 리렌더링 된다. (심지어 하위 컴포넌트에 최적화 설정을 해주지 않으면 부모에게서 받는 props가 변경되지 않았더라도 리렌더링 되는게 기본이다. )
-
-
+컴포넌트는 자신의 state가 변경되거나, 부모에게서 받는 props가 변경되었을 때마다 리렌더링 된다.<br/>
+(심지어 하위 컴포넌트에 최적화 설정을 해주지 않으면 부모에게서 받는 props가 변경되지 않았더라도 리렌더링 되는게 기본이다.)<br/>
 
 ## useMemo
-useMemo는 메모리제이션된 값을 반환한다는 문장이 핵심이다.
-만약 컴포넌트가 2개의 props를 전달받을때 한가지 props가 변경되어도
-두가지 props를 동시에 가공시켜야한다.
-변경 되지않는 props는 useMemo에 저장시켜서 이전에 계산된 값을 쓰면 된다.
+useMemo는 메모리제이션된 값을 반환한다는 문장이 핵심이다.<br/>
+만약 컴포넌트가 2개의 props를 전달받을때,<br/>
+한가지 props가 변경되어도 두가지 props를 동시에 가공시켜야한다.<br/>
+변경 되지않는 props는 useMemo에 저장시켜서 이전에 계산된 값을 쓰면 된다.<br/>
 
 ```js
 // App.js
@@ -196,8 +219,8 @@ const Info = ({ color, movie }) => {
 
 export default Info;
 ```
-해당 코드에서 계산함수 useMemo 내부 콜백함수에 저장시킨다.
-의존성 배열에 넘겨준 값이 변경되었을 때만 메모리제이션된 값을 다시 계산시켜준다.
+해당 코드에서 계산함수 useMemo 내부 콜백함수에 저장시킨다.<br/>
+의존성 배열에 넘겨준 값이 변경되었을 때만 메모리제이션된 값을 다시 계산시켜준다.<br/>
 
 
 ```js
@@ -208,11 +231,10 @@ const movieGenreKor = useMemo(() => getMovieGenreKor(movie), [movie]);
 ```
 
 ## useCallback
-useCallback은 메모리제이션된 함수를 반환한다라는 문장이 핵심이다.
-리액트는 컴포넌트가 렌더링 될 때마다 내부에 선언되어 있던 표현식(변수, 또다른 함수 등)도 매번 다시 선언되어 사용된다.
- App.js의 onChangeHandler 함수는 내부의 color, movie 상태값이 변경될 때마다 재선언된다는 것을 의미한다.
- 
-이 함수를 굳이 매번 선언하기보다는 한번만 선언하고 재사용하기 위해서 useCallback을 사용한다.
+useCallback은 메모리제이션된 함수를 반환한다라는 문장이 핵심이다.<br/>
+리액트는 컴포넌트가 렌더링 될 때마다 내부에 선언되어 있던 표현식(변수, 또다른 함수 등)도 매번 다시 선언되어 사용된다.<br/>
+App.js의 onChangeHandler 함수는 내부의 color, movie 상태값이 변경될 때마다 재선언된다는 것을 의미한다.<br/>
+이 함수를 굳이 매번 선언하기보다는 한번만 선언하고 재사용하기 위해서 useCallback을 사용한다.<br/>
  
 ```js
 // App.js
@@ -226,16 +248,16 @@ const onChangeHandler = useCallback(e => {
 
 ```
 
-이벤트 핸들러 함수나 api를 요청하는 함수를 주로 useCallback 으로 선언한다.
+이벤트 핸들러 함수나 api를 요청하는 함수를 주로 useCallback 으로 선언한다.<br/>
 
-React.memo를 이용하여 최적화한 컴포넌트에 이러한 함수를 props로 전달하는 경우일때 
-상위 컴포넌트에서 useCallback을 사용하면 좋다.
-왜냐면 매번 재선언 된 함수는 하위 컴포넌트가 변경된 값이라고 인식하기때문이다.
+React.memo를 이용하여 최적화한 컴포넌트에 이러한 함수를 props로 전달하는 경우일때<br/> 
+상위 컴포넌트에서 useCallback을 사용하면 좋다.<br/>
+왜냐면 매번 재선언 된 함수는 하위 컴포넌트가 변경된 값이라고 인식하기때문이다.<br/>
 
 
 ## useCallback과 useMemo의 차이점
-useMemo는 복잡한 함수의 return값을 기억해야 할 때
-useCallback은 함수 자체를 기억해야 할 때
+useMemo는 복잡한 함수의 return값을 기억해야 할 때<br/>
+useCallback은 함수 자체를 기억해야 할 때<br/>
 
 
 
