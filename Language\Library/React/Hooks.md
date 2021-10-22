@@ -87,8 +87,19 @@ useEffect (() => {
 
 ```
 
-컴포넌트가 unmount 될 때는 clean-up 함수를 반환하여 정리하는 리소스를 만들 수 있다.<br/>
+useEffect 에서는 함수를 반환 할 수 있는데 이를 cleanup 함수라고 부른다.<br/>
+cleanup 함수는 useEffect 에 대한 뒷정리라고 말할 수 있다.<br/>
+의존성 배열이 비어있는 경우에는 컴포넌트가 사라질 때 cleanup 함수가 호출된다.<br/>
 
+```js
+useEffect (() => {
+  console.log('컴포넌트가 화면에 나타남');
+  //sideEffect
+  return () => {
+   console.log('컴포넌트가 화면에서 사라짐');
+  };
+}, [])
+```
 
 ## useMemo와 useCallback을 배우기 전에 알아야 하는 것
 함수형 컴포넌트는 그냥 함수다. 다시 한 번 강조하자면 함수형 컴포넌트는 단지 jsx를 반환하는 함수이다.<br/>
