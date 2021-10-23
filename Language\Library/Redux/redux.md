@@ -10,11 +10,11 @@
 - [리덕스의 장*단점](#redux-pros-and-cons)
 - [mvc패턴 vs redux](#mvc-pattern-vs-redux)
 
-## 💎 리덕스 란?  _redux
+## 💎 리덕스 란?_redux
 액션이라는 이벤트를 사용하여 애플리케이션 상태를 관리하고 업데이트하기 위한 상태관리 라이브러리로써, <br/>
 리덕스 라이브러리는 예측가능한 방식으로만 업데이트될 수 있도록 보장하는 규칙과 함께 전체 애플리케이션에서 사용해야 하는 상태에 대한 ***중앙 저장소 같은 역할***을 한다.
 
-## 💎 리덕스의 데이터 흐름  _redux-data-flow
+## 💎 리덕스의 데이터 흐름_redux-data-flow
 ![redux-data-flow](https://user-images.githubusercontent.com/80687195/138536932-21377ed9-1f55-42f7-96d9-2c9086f52962.gif)
 <br />
 ### Redux의 데이터 흐름은 <br />
@@ -166,9 +166,9 @@ redux의 액션들은 모두 동기적으로 이러나기 때문에 중간에 �
 - 반복적은 코드를 써야합니다.
 - 반복적은 코드를 써야함에 코드양이 많아 집니다.
 
-## 💎 리덕스를 사용해야 하는 이유? _Why Use Redux?
+## 💎 리덕스를 사용해야 하는 이유?_Why Use Redux?
 - 상태 예측 가능하게 만들수 있다.
 - 유지 보수가 비교적 쉬워진다
 - 의도하지 않게 스테이트 값이 바뀌는것을 사전에 차단할 수 있다.
 
-## 💎 mvc패턴 vs redux _mvc-pattern vs redux
+## 💎 mvc패턴 vs redux_mvc-pattern vs redux
