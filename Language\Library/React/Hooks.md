@@ -246,7 +246,7 @@ useCallback은 메모리제이션된 함수를 반환한다라는 문장이 핵�
 리액트는 컴포넌트가 렌더링 될 때마다 내부에 선언되어 있던 표현식(변수, 또다른 함수 등)도 매번 다시 선언되어 사용된다.<br/>
 App.js의 onChangeHandler 함수는 내부의 color, movie 상태값이 변경될 때마다 재선언된다는 것을 의미한다.<br/>
 이 함수를 굳이 매번 선언하기보다는 한번만 선언하고 재사용하기 위해서 useCallback을 사용한다.<br/>
- 
+
 ```js
 // App.js
 
@@ -265,12 +265,16 @@ React.memo를 이용하여 최적화한 컴포넌트에 이러한 함수를 prop
 상위 컴포넌트에서 useCallback을 사용하면 좋다.<br/>
 왜냐면 매번 재선언 된 함수는 하위 컴포넌트가 변경된 값이라고 인식하기때문이다.<br/>
 
-# useContext
+## useCallback과 useMemo의 차이점
+useMemo는 복잡한 함수의 return값을 기억해야 할 때<br/>
+useCallback은 함수 자체를 기억해야 할 때<br/>
+
+## useContext
 React의 props를 전역적으로 사용할 수 있게 도와주는 Hook.<br/>
 부모 -> 자식으로 불필요하게 여러번 넘겨줘 props drilling이 발생하는 경우<br/>
 Redux를 사용하기도 하지만 useContext를 사용해도 이 문제를 해결 할 수 있다.<br/>
 
-## 사용방법
+### 사용방법
 
 ```js
 import { createContext, useState } from 'react';
@@ -296,15 +300,95 @@ const TestContextProvider: React.FC<React.ReactNode> = ({ children }) => {
 exprot default TestContextProvider;
 ```
 
-createContext 를 이용해 단일 export 할 수 있는 변수 생성, 그 안에 내게 필요한 함수 작성.<br/>
+createContext 를 이용해 단일 export 할 수 있는 변수 생성, 그 안에 내게 필요한 함수 작성한다.<br/>
 Provider 에서 value 상태 입력 (value 값은 무조건 필요하며 작성안하면 오류뜸)<br/>
 상태를 적용해줄 때 제일 최상단에(App.js 같은)에Provider 적용된 함수 작성해주면 된다.<br/>
 
+```js
+import TestContextProvider from './utils/context/TestContext';
+
+const App = () => {
+  return (
+    <TestContextProvider>
+      <div className='App'></div>
+    </ TestContextProvider>
+  );
+};
+
+export default App;
+```
+
+다른 컴포넌트에서 생성한 Context를 import 해준뒤, 사용 가능하다..<br/>
+설정값인 name 혹은 setNameHandler를 사용할 때 testContext.name 혹은 .<br/>
+testContext.setNameHandler와 같이 사용할 수 있다..<br/>
+
+```js
+import { useContext } from 'react';
+import { TestContext } from './utils/context/TestContext';
+
+const Slider = () => {
+  const { name, setNameHandler } = useContext(TestContext)
+  
+  return <div></div>;
+};
+
+export default Slider;
+```
+
+useContext를 이용해서도 사용 가능하다..<br/>
+
+## useContext를 이용할때 주의할점
 useContext를 쓸 때 주의할 사항은, Provider에 제공한 value가 달라지면 useContext를 쓰고 있는 모든 컴포넌트가 리렌더링 된다.<br/>
 value 안의 상태가 하나라도 바뀌면 객체로 묶여있으므로 전체가 리렌더링 됨. <br/>
 따라서 잘못 쓰면 엄청난 렉을 유발할 수 있다.<br/>
 
-# 예상 질문
-## useCallback과 useMemo의 차이점
-useMemo는 복잡한 함수의 return값을 기억해야 할 때<br/>
-useCallback은 함수 자체를 기억해야 할 때<br/>
+
+## useRef
+JavaScript 에서  특정 DOM 을 선택 시  getElementById, querySelector 같은 DOM Selector 함수를 사용해서 DOM 을 선택한다.<br/>
+React안에서 DOM reference를 활용 할 수 있게 해주는 Hook.<br/>
+useRef 로 관리하는 변수는 값이 바뀐다고 해서 컴포넌트가 리렌더링되지는 않는다.<br/>
+기본 React 문법을 벗어나 useRef를 남용하는 것은 부적절하고,<br/>
+특정 엘리먼트의 크기를 가져와야 한다던지, 스크롤바 위치를 가져오거나 설정해야된다던지, 또는 포커스를 설정.<br/>
+추가적으로 Video.js, JWPlayer 같은 HTML5 Video 관련 라이브러리,<br/>
+또는 D3, chart.js 같은 그래프 관련 라이브러리 등의 외부 라이브러리를 사용해야 할 때에도<br/> 
+특정 DOM 에다 적용하기 때문에 useRef를 사용하면 적절하다.<br/>
+React의 특징이자 장점인 선언적 프로그래밍 원칙과 배치되기 때문에, 조심해서 사용해야 한다.<br/>
+
+### 사용방법
+```js
+import { useRef } from "react";
+
+export default function App() {
+  const videoRef = useRef(null);
+
+  const playVideo = () => {
+    videoRef.current.play();
+    console.log(videoRef.current);
+  };
+
+  const pauseVideo = () => {
+    videoRef.current.pause();
+    videoRef.current.remove();
+  };
+
+  return (
+    <div className="App">
+      <div>
+        <button onClick={playVideo}>Play</button>
+        <button onClick={pauseVideo}>Pause</button>
+      </div>
+      <video ref={videoRef} width="320" height="240" controls>
+        <source
+          type="video/mp4"
+          src="https://player.vimeo.com/external/544643152.sd.mp4?s=7dbf132a4774254dde51f4f9baabbd92f6941282&profile_id=165"
+        />
+      </video>
+    </div>
+  );
+}
+
+```
+
+vedio요소에 접근하기 위해 useRef를 사용하여 변수에 참조값을 저장하고,<br/>
+해당 변수를 이용해 vedio요소에 접근하여 vedio요소에 있는 prototype을 사용할 수 있다.<br/>
+
