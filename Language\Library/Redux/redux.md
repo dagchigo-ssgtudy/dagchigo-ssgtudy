@@ -10,11 +10,11 @@
 - [리덕스의 장*단점](#redux-pros-and-cons)
 - [mvc패턴 vs redux](#mvc-pattern-vs-redux)
 
-## 💎 리덕스 란? _redux
+## 💎 리덕스 란?  _redux
 액션이라는 이벤트를 사용하여 애플리케이션 상태를 관리하고 업데이트하기 위한 상태관리 라이브러리로써, <br/>
 리덕스 라이브러리는 예측가능한 방식으로만 업데이트될 수 있도록 보장하는 규칙과 함께 전체 애플리케이션에서 사용해야 하는 상태에 대한 ***중앙 저장소 같은 역할***을 한다.
 
-## 💎 리덕스의 데이터 흐름 _redux-data-flow
+## 💎 리덕스의 데이터 흐름  _redux-data-flow
 ![redux-data-flow](https://user-images.githubusercontent.com/80687195/138536932-21377ed9-1f55-42f7-96d9-2c9086f52962.gif)
 <br />
 ### Redux의 데이터 흐름은 <br />
