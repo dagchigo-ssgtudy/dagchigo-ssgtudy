@@ -265,10 +265,46 @@ React.memo를 이용하여 최적화한 컴포넌트에 이러한 함수를 prop
 상위 컴포넌트에서 useCallback을 사용하면 좋다.<br/>
 왜냐면 매번 재선언 된 함수는 하위 컴포넌트가 변경된 값이라고 인식하기때문이다.<br/>
 
+# useContext
+React의 props를 전역적으로 사용할 수 있게 도와주는 Hook.<br/>
+부모 -> 자식으로 불필요하게 여러번 넘겨줘 props drilling이 발생하는 경우<br/>
+Redux를 사용하기도 하지만 useContext를 사용해도 이 문제를 해결 할 수 있다.<br/>
 
+## 사용방법
+
+```js
+import { createContext, useState } from 'react';
+
+export const TestContext = createContext({
+  name: '',
+  setNameHandler: (name: string) => {},
+});
+
+const TestContextProvider: React.FC<React.ReactNode> = ({ children }) => {
+  const [firstName, setFirstName] = useState('');
+  
+  const setFirstNameHandler = (name: string) => setFirstName(name);
+  
+  return (
+  <TestContext.Provider
+    value={{ name: fristName, setNameHandler: setFirstNameHandler }}>
+    {children}
+  </TestContext.Provider>
+  );
+}
+
+exprot default TestContextProvider;
+```
+
+createContext 를 이용해 단일 export 할 수 있는 변수 생성, 그 안에 내게 필요한 함수 작성.<br/>
+Provider 에서 value 상태 입력 (value 값은 무조건 필요하며 작성안하면 오류뜸)<br/>
+상태를 적용해줄 때 제일 최상단에(App.js 같은)에Provider 적용된 함수 작성해주면 된다.<br/>
+
+useContext를 쓸 때 주의할 사항은, Provider에 제공한 value가 달라지면 useContext를 쓰고 있는 모든 컴포넌트가 리렌더링 된다.<br/>
+value 안의 상태가 하나라도 바뀌면 객체로 묶여있으므로 전체가 리렌더링 됨. <br/>
+따라서 잘못 쓰면 엄청난 렉을 유발할 수 있다.<br/>
+
+# 예상 질문
 ## useCallback과 useMemo의 차이점
 useMemo는 복잡한 함수의 return값을 기억해야 할 때<br/>
 useCallback은 함수 자체를 기억해야 할 때<br/>
-
-
-
