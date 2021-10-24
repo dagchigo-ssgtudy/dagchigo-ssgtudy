@@ -197,3 +197,19 @@ MVC가 너무 복잡하고 비대해져서, 새 기능을 추가할때마다 크
 ![mvc패턴](https://user-images.githubusercontent.com/80687195/138582235-423e3685-8201-49bd-a408-5eeec3f6b8e7.png)
 
 ![mvc](https://user-images.githubusercontent.com/80687195/138582352-0d378010-9997-44d3-818d-665da546abba.png)
+
+한계를 극복하기 위한 해결책으로 ***단방향 데이터 흐름*** 입니다. 단방향으로만 흐르고, 새로운 데이터를 넣으면 처음부터 흐름이 다시 시작되는 방식으로 설계되었고, 이 시스템 구성 즉, 아키텍처를 flux라고 불렸습니다. 
+
+### Flux 패턴
+<img width="755" alt="flux_with_action" src="https://user-images.githubusercontent.com/80687195/138582759-0462a22f-13ae-43b5-86d2-f5d8f8277119.png">
+
+
+Model이 view를 반영하고, view가 model을 변경하는 양방향 데이터 흐름에서 벗어나 단방향으로만 데이터를 변경할 수 있도록 만든거입니다.
+
+### Redux
+redux는 flux패턴을 구현한 라이브러리라고 생각하면 됩니다. 기본적인 원리는 flux패턴과 거의 비슷하다고 볼 수 있겠습니다. 
+
+단지 ***차이점***
+data처리를 reducer라는 놈이 할 뿐입니다. flux패턴에서 언급한 dispatch에 등록된 callback정도로 이해하면 되겠습니다. <br/>
+action => dispatch => reducer => store, store변경 시 view에 data변경됬다고 알려줍니다.
+
