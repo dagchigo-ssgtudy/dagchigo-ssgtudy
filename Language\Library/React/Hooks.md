@@ -6,7 +6,7 @@ React에서 컴포넌트의 동적인 값을 상태라고 부른다.<br/>
 이후 React hooks의 useState 함수로 state 사용이 가능해졌다.<br/>
 useState는 state를 함수 컴포넌트 안에서 사용할 수 있게 해준다.<br/>
 
-### 사용법
+### 사용방법
 useState를 호출하면 배열을 반환하는데,<br/>
 배열의 0번째 요소는 현재 state 변수이고,<br/>
 1번째 요소는 이 변수를 갱신할 수 있는 함수다.<br/>
@@ -44,7 +44,6 @@ function App() {
 export default App;
 ```
 
-
 ## useEffect
 useEffect는 Side Effect를 다루기 위한 기본 내장 API 함수다.<br/>
 React의 함수 컴포넌트는 Pure Function으로 작동한다.<br/>
@@ -56,6 +55,7 @@ React의 함수 컴포넌트는 Pure Function으로 작동한다.<br/>
 Side Effect란 함수 내의 구현이 함수 외부에 영향을 끼치는 경우를 말한다.<br/>
 Pure Function이란 함수를 입력했을때 반환되는 값을 예측 가능한 함수, 즉 똑같은 값이 나오는 함수를 말한다.<br/>
 
+## 사용방법
 useEffect에 첫번째 인자는 함수이고,<br/>
 해당 함수 내에서 Side Effect를 실행하면 된다.<br/>
 
@@ -115,6 +115,8 @@ useMemo는 메모리제이션된 값을 반환한다는 문장이 핵심이다.<
 만약 컴포넌트가 2개의 props를 전달받을때,<br/>
 한가지 props가 변경되어도 두가지 props를 동시에 가공시켜야한다.<br/>
 변경 되지않는 props는 useMemo에 저장시켜서 이전에 계산된 값을 쓰면 된다.<br/>
+
+## 
 
 ```js
 // App.js
