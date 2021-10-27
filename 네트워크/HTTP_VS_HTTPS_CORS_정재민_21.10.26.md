@@ -122,53 +122,49 @@ B는 본인이 정해놓은 허용 기준에 A가 맞는다면 이를 사용할 
 
 # CORS Request
 
-
-
-
-
 ## Simple Request
 
 ![Screenshot from 2021-10-26 03-49-46](https://user-images.githubusercontent.com/81761175/139064565-0db01c32-86b2-435a-b86b-90a3ded10eba.png)
 
-요청 방식은 3가지가 있는데 첫 번째로 단순 요청 simple Request입니다.
-CORS 정책에서 브라우저는 기본적으로 preflight 방식으로 요청하도록 합니다.
-하지만 일부 요청은 preflight 방식으로 요청하지 않습니다.
-브라우저는 요청을 분석하여 해당 조건을 충족할 때 Simple Request 방식으로 요청합니다.
+요청 방식은 3가지가 있는데 첫 번째로 단순 요청 simple Request입니다.<br/>
+CORS 정책에서 브라우저는 기본적으로 preflight 방식으로 요청하도록 합니다.<br/>
+하지만 일부 요청은 preflight 방식으로 요청하지 않습니다.<br/>
+브라우저는 요청을 분석하여 해당 조건을 충족할 때 Simple Request 방식으로 요청합니다.<br/>
 
-첫 번째로 HTTP Method가 GET, POST , HEAD 이 셋 중에 하나로 요청한 경우
-(HEAD 메서드는 GET 메서드의 요청과 동일한 응답을 요구하지만, 응답 본문을 포함하지 않습니다.)
+첫 번째로 HTTP Method가 GET, POST , HEAD 이 셋 중에 하나로 요청한 경우<br/>
+(HEAD 메서드는 GET 메서드의 요청과 동일한 응답을 요구하지만, 응답 본문을 포함하지 않습니다.)<br/>
 
-두 번째로 Fetch 표준 정책에서 정의한 Forbidden Header Name이라는 헤더 목록과
-CORS-safelisted request header라는 헤더 목록 이외에 다른 커스텀 헤더
-그리고 권한과 관련된 헤더가 없는 경우를 말하는데
-한마디로 커스텀 헤더를 전송하지 않는 경우입니다.
+두 번째로 Fetch 표준 정책에서 정의한 Forbidden Header Name이라는 헤더 목록과<br/>
+CORS-safelisted request header라는 헤더 목록 이외에 다른 커스텀 헤더<br/>
+그리고 권한과 관련된 헤더가 없는 경우를 말하는데<br/>
+한마디로 커스텀 헤더를 전송하지 않는 경우입니다.<br/>
 
-세 번째로 HTTP Method가 POST인 경우에는
-Content-Type 헤더를 수동으로 지정할 수 있는데,
-이 Content-Type이 다음과 같은 세 가지 값에 포함되는 경우입니다.
-application/x-www-form-urlencoded, multipart/form-data, text/plain 입니다.
+세 번째로 HTTP Method가 POST인 경우에는<br/>
+Content-Type 헤더를 수동으로 지정할 수 있는데,<br/>
+이 Content-Type이 다음과 같은 세 가지 값에 포함되는 경우입니다.<br/>
+application/x-www-form-urlencoded, multipart/form-data, text/plain 입니다.<br/>
 
-Simple Request는 서버에 1번 요청하고, 서버도 1번 회신하는 것으로 처리가 종료됩니다.
+Simple Request는 서버에 1번 요청하고, 서버도 1번 회신하는 것으로 처리가 종료됩니다.<br/>
 
 ## Preflighted Requests
 
 ![preflight_correct (1)](https://user-images.githubusercontent.com/81761175/139064965-f4ca6dbe-ee8d-4f87-8a8e-0427a3225044.png)
 
-Preflight Request는 비행하기 전이라는 뜻으로 쉽게 말하면 이륙 허가를 받는 것입니다.
-가장 먼저 HTTP Request Method 중 하나인 OPTION 메서드를 교차 출처로 보내고,
-응답받은 헤더 정보를 통해서 메인 요청을 보낼 수 있는지 판단하는 방식입니다.
-브라우저는 요청에 origin이라는 header를 추가합니다.
-origin에는 요청하는 쪽의 scheme, 도메인, 포트가 담깁니다.
-(scheme은 요청할 자원에 접근할 방법)
-브라우저는 이 둘을 비교해서 요청할 때 보낸 origin이 응답에 있으면 이를 허용해 줍니다.
+Preflight Request는 비행하기 전이라는 뜻으로 쉽게 말하면 이륙 허가를 받는 것입니다.<br/>
+가장 먼저 HTTP Request Method 중 하나인 OPTION 메서드를 교차 출처로 보내고,<br/>
+응답받은 헤더 정보를 통해서 메인 요청을 보낼 수 있는지 판단하는 방식입니다.<br/>
+브라우저는 요청에 origin이라는 header를 추가합니다.<br/>
+origin에는 요청하는 쪽의 scheme, 도메인, 포트가 담깁니다.<br/>
+(scheme은 요청할 자원에 접근할 방법)<br/>
+브라우저는 이 둘을 비교해서 요청할 때 보낸 origin이 응답에 있으면 이를 허용해 줍니다.<br/>
 
 ## Requests with credentials
 
 ![cred-req-updated](https://user-images.githubusercontent.com/81761175/139065076-60ba0fe8-e4f3-4cac-9460-cfaaed231951.png)
 
-Request with credential은 인증 정보를 포함하여 요청하는 방식입니다.
-CORS 요청은 기본적으로 Non-Credential 요청이므로, withCredentials = true를
-지정하지 않으면 Non-Credential 요청이 됩니다.
-그래서 요청 시 withCredentials = true를 지정해서 Credential 요청을 보낼 수 있고,
-서버는 Response Header에 반드시 Access-Control-Allow-Credentials: true를 포함해야 합니다.
-Access-Control-Allow-Origin 헤더의 값에는 *가 오면 안 되고 http://foo.origin과 같은 구체적인 도메인이 와야 합니다.
+Request with credential은 인증 정보를 포함하여 요청하는 방식입니다.<br/>
+CORS 요청은 기본적으로 Non-Credential 요청이므로, withCredentials = true를<br/>
+지정하지 않으면 Non-Credential 요청이 됩니다.<br/>
+그래서 요청 시 withCredentials = true를 지정해서 Credential 요청을 보낼 수 있고,<br/>
+서버는 Response Header에 반드시 Access-Control-Allow-Credentials: true를 포함해야 합니다.<br/>
+Access-Control-Allow-Origin 헤더의 값에는 *가 오면 안 되고 http://foo.origin과 같은 구체적인 도메인이 와야 합니다.<br/>
