@@ -81,3 +81,39 @@
 - MVC의 양방향 데이터 흐름 → 예측 불가능한 버그 발생  
 ![facebook](https://user-images.githubusercontent.com/83861190/139565172-2c8117dc-4487-470a-aa2b-a58f4c42d7d2.png)
 
+# Flux 디자인 패턴
+- MVC패턴의 단점을 보완하기 위해 페이스북에서 개발한 아키텍쳐
+- **단방향 데이터 흐름**
+- Dispatcher, Store, View 세 부분으로 구성
+- 데이터의 흐름 : Dispatcher → Store → View(Action을 통해 다시 Dispatcher로 흐름)
+- 데이터의 변화를 예측하기 쉽게 함
+
+![Flux](https://user-images.githubusercontent.com/83861190/139570552-1ae325d6-f60b-44f1-a3d4-d508bf376900.png)  
+
+## Action
+- View에서 사용자 상호작용 시 발생
+- Dispatcher에서 콜백 함수가 실행되면 Store가 업데이트
+- 콜백 함수가 실행될 시 데이터가 담겨있는 객체가 인수로 전달되어야 함
+- 여기서 전달 되는 객체를 Action
+- 액션 생성자(Action Creator) : Type과 데이터(Payload)로 구성
+
+## Dispatcher
+- Flux의 모든 데이터 흐름을 관리하는 허브 역할
+- Action이 발생하면 Dispatcher로 전달
+- Action Type에 대한 맞춤 콜백이 존재
+- Dispatcher는 전달된 Action을 보고 등록된 콜백 함수를 실행하여 Store에 데이터를 전달
+
+## Store
+- 애플리케이션의 모든 상태 변경은 Store에 의해 결정
+- Store는 변경된 데이터를 View에 전달
+- 자신의 컴포넌트 트리에 속해있는 자식 노드 모두를 다시 랜더링 시킴
+
+## View
+- 화면에 데이터를 보여줌
+- Flux의 View는 자식 View로 데이터를 흘려 보내는 Controller의 역할도 함(컨트롤러 뷰 라고도 함)
+
+# MVC vs Flux
+- 둘 다 유지 보수를 편하게 하기 위해 고안된 디자인 패턴
+- MVC : 양방향 데이터 흐름
+- Flux : 단방향 데이터 흐름
+
