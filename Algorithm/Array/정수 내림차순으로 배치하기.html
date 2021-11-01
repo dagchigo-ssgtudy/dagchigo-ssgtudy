@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>[프로그래머스]정수 내림차순으로 배치하기</title>
+</head>
+
+<body>
+  <script>
+    function solution(n) {
+
+      let str = String(n)
+      let arr = str.split("")
+
+      arr.sort((a, b) => {
+        return b - a
+      })
+
+      return Number(arr.join(""))
+    }
+    // (풀이 끝)
+
+    // TEST CASE
+    const n = 118372
+    console.log(solution(n)); 
+  </script>
+</body>
+
+</html>

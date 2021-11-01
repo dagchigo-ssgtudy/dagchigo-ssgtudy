@@ -1,0 +1,50 @@
+<html>
+<head>
+ <meta charset="UTF-8" />
+ <title>[프로그래머스1단계]두 개 뽑아서 더하기</title> 
+ 문제링크: [두 개 뽑아서 더하기
+](https://programmers.co.kr/learn/courses/30/lessons/68644)
+</head>
+<body>
+ <script>
+function solution(new_id) {
+    //1단계: 소문자로 바꿔준다.
+    new_id = new_id.toLowerCase()
+    //2단계: 알파벳, 숫자, 뺴기, 언더바, 마침표 제외한 모든 문자제거
+    new_id = new_id.replace(/[^a-z0-9-_.]/g , "" );
+    //3단계 : 마침표가 두개이상 있는 경우, 하나로 치환
+    new_id = new_id.replace(/\.+/g , "." );
+    //4단계 : 마침표가 처음이나 끝에 위치한다면 제거
+    new_id = new_id.replace(/^\.|\.$/g , "" );
+    //5단계 : 빈 문자열이라면, new_id에 a 대입
+    if(new_id === "") new_id = "a";
+    //6단계 : 길이가 16자 이상이면 new_id 15개자까지만 보여주기
+    if(new_id.length >=16)  new_id = new_id.slice(0,15);
+    new_id = new_id.replace(/\.$/g , "" );
+    //7단계 : new_id길이가 2자이하면, new_id의 마지막 글자를 3이 될때까지 반복
+    while(new_id.length <=2) {
+        new_id += new_id[new_id.length-1];
+    }
+
+    return new_id;
+}
+
+// 정규표현식 기본 문법
+    // ^ : 배열밖에 있으면 첫글자를 의미한다. 
+    // $ : 문자열끝을 의미
+    // g : 전역에서 찾는다.
+    // | : or 표시
+    // \ : 배열안에 없으면 특수문자를 나타낼때, 앞에 사용해야한다.
+    // + : 2개이상인거 나타낼때
+    // [a-z] : a-z까지 찾는다. 
+    // [^0-9] : 0-9를 제외한 모든 것을 찾는다.
+
+
+   // TEST CASE
+    let n1 = "...!@BaT#*..y.abcdefghijklm"
+    let n2 = "z-+.^."
+   console.log(solution(n1)); //test1
+   console.log(solution(n2)); //test2
+ </script>
+</body>
+</html>
