@@ -94,11 +94,9 @@ https://user-images.githubusercontent.com/81761175/139883267-4d928dce-372e-4fea-
 
 ## WebAPI & Callback Queue & EventLoop 동작 과정
 
-![Screenshot from 2021-11-03 01-07-16](https://user-images.githubusercontent.com/81761175/139903979-9ed104a2-d22b-428c-87fe-04b44b5df18d.png)
-
 또 예시 코드를 통해 앞서 설명드린 부분에 대해 보여드리겠습니다.<br/>
 
-https://user-images.githubusercontent.com/81761175/139905418-68ad3fbd-25cd-41b6-8809-c03157a5d2a8.mp4
+![Screenshot from 2021-11-03 01-07-16](https://user-images.githubusercontent.com/81761175/139903979-9ed104a2-d22b-428c-87fe-04b44b5df18d.png)
 
 해당 코드가 실행이 되면 우선은 call stack에 first 함수가 들어가게 되고 1+1 console이 실행이 됩니다.<br/>
 그다음에 second 함수가 실행이 되고, setTimeout이 실행이 됩니다.<br/>
@@ -111,6 +109,8 @@ https://user-images.githubusercontent.com/81761175/139905418-68ad3fbd-25cd-41b6-
 타이머가 정해진 시간을 모두 세고 나면 콜백 함수를 callback queue에 넣고 자기는 사라집니다.<br/>
 그러면 이 콜백은 callback queue에서 실행되기를 기다리게 되겠죠<br/>
 이 콜백 함수도 결국엔 함수이기 때문에 call stack에 들어가야 합니다.<br/>
+
+https://user-images.githubusercontent.com/81761175/139905418-68ad3fbd-25cd-41b6-8809-c03157a5d2a8.mp4
 
 ## 여기서부터 핵심입니다. 중요!
 이때 이제 드디어 이벤트 루프가 여기서 동작을 하게 됩니다,<br/>
