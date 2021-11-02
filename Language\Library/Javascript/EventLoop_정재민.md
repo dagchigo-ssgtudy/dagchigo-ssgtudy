@@ -7,7 +7,7 @@ EventLoop가 조사를 해보니까 간단하게 한줄 설명이나 짧게 설�
 ## Single Thread
 스레드(thread)는 어떠한 프로그램 내에서, 특히 프로세스 내에서 실행되는 흐름의 단위를 말합니다.<br/>
 이벤트 루프를 알아보기 위해서 가장 먼저 설명드릴 것은<br/>
-자바스크립트의 큰 특징 중 하나가 '싱글 스레드' 기반의 언어라는 점입니다.<br/>
+자바스크립트의 큰 특징 중 하나가 'Single Thread' 기반의 언어라는 점입니다.<br/>
 스레드가 하나라는 말은 동시에 하나의 작업만을 처리할 수 있다는 말이 되죠.<br/>
 하지만 실제로 자바스크립트가 사용되는 환경을 생각해 보면 많은 작업이 동시에 처리되고 있는 걸 볼 수 있습니다.<br/>
 예를 들면, 웹브라우저는 http 요청이 진행되면서 다른 함수가 작동하는 걸 많이 봐왔죠,<br/>
@@ -119,7 +119,7 @@ https://user-images.githubusercontent.com/81761175/139905418-68ad3fbd-25cd-41b6-
 이 이벤트 루프는 call stack과 callback queue를 계속 주시하고 있습니다.<br/>
 call stack이 비어 있으면, 먼저 들어온 순서대로 callvack queue에 있는 콜백 함수들을 callstack으로 집어넣습니다.<br/>
 
-callback queue를 지켜보다가 '콜백 함수가 왔네?' 하고 'call stack 이 비어있네?'이러면<br/>
+callback queue를 지켜보다가 `콜백 함수가 왔네?` 하고 `call stack 이 비어있네?`이러면<br/>
 콜백 함수를 call stack으로 옮겨주는 게 EventLoop입니다.<br/>
 
 이때 call stack이 반드시 비어있어야만 callback queue에 callback 함수가 call stack으로 옮겨진다는 사실 잊지 마시기 바랍니다.<br/>
