@@ -143,7 +143,7 @@ ajax 요청이라든지 하던 중 다른 일을 할 수 있는 것입니다.<br
 
 https://user-images.githubusercontent.com/81761175/139905713-2a0f5f4a-911a-4ef9-8abe-2c9fa4a61b24.mp4
 
-우선은 스택에 first 함수가 들어가게 되고 1+1 console이 실행이 됩니다.<br/>
+우선은 call stack에 first 함수가 들어가게 되고 1+1 console이 실행이 됩니다.<br/>
 그다음에 second 함수가 실행이 되고, setTimeout이 실행이 됩니다.<br/>
 여기서 이 setTimeout부터 말씀을 드릴게요<br/>
 setTimeout의 타이머는 0 이긴 하지만 그래도 webAPI에 타이머가 생성이 됩니다.<br/>
