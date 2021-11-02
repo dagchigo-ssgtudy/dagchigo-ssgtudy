@@ -63,7 +63,7 @@ https://user-images.githubusercontent.com/81761175/139883267-4d928dce-372e-4fea-
 5. 더 이상 실행할 코드가 없으니 test2가 return 된다.<br/>
 6. test1 내부에 console이 위로 쌓여 실행된다.(test1, 2)<br/>
 7. 더 이상 실행할 코드가 없으니 test1이 return 된다.<br/>
-8. test 내부의 console이 위로 쌓여 실행된다.(test3, 6)<br/
+8. test 내부의 console이 위로 쌓여 실행된다.(test3, 6)<br/>
 
 ![Screenshot from 2021-11-02 01-12-52](https://user-images.githubusercontent.com/81761175/139893352-3540835a-3c20-4086-8a9a-14c1590c1a87.png)
 
