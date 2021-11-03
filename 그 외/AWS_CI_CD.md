@@ -8,7 +8,7 @@
 
 > **_파이프라인의 단계는 상황과 필요에 따라 더 세분화되거나 간소화될 수 있음_**
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8bab8057-d42e-436a-87df-72b96f93cf21/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20211031%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211031T115718Z&X-Amz-Expires=86400&X-Amz-Signature=db405d8ce9ac808d1fe715c278e8f13cc5a6f32628f39632dce93d9c580044bb&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22"></img>
+<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8bab8057-d42e-436a-87df-72b96f93cf21/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20211103%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211103T160001Z&X-Amz-Expires=86400&X-Amz-Signature=4e6cff7944ac3024c1d1e265c38b014924d761c753f96bedb4f29a68c3194875&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22"></img>
 
 ---
 
