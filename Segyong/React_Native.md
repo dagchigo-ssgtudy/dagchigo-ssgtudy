@@ -571,4 +571,4 @@ return (
 
 change 이벤트는 값을 입력하는 TextInput 컴포넌트에서 많이 사용된다. TextInput 컴포넌트를 이용하여 변화하는 텍스트를 출력
       
- 
+ https://sansanji.tistory.com/entry/React-Native-%EA%B0%9C%EB%B0%9C%EC%8B%9C-Native-%EA%B8%B0%EB%8A%A5-%EA%B0%9C%EB%B0%9C%ED%9B%84-%EC%97%B0%EA%B2%B0-%EB%B0%A9%EB%B2%95-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C
