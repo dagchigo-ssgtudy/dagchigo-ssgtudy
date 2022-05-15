@@ -71,3 +71,5 @@
 <img width="595" alt="스크린샷 2022-05-15 오후 5 16 44" src="https://user-images.githubusercontent.com/80618616/168477968-7e59907d-44e8-43c1-a716-900f9ead5e1a.png">
 
 ## java script 관련
+
+업뎃예정 ,, , ,,🐰 ,,
