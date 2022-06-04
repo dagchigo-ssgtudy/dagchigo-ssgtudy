@@ -1,0 +1,54 @@
+1. 크롤링(스크레이핑)
+
+- 웹 페이지를 그대로 가져와서 거기서 데이터를 추출해 내는 행위
+
+- cf 크롤링하게 도와주는 소프트웨어 **크롤러** 라고 부릅니다.
+
+출처 : 나무 위키
+
+2. node쪽 크롤링 대표적인 라이브러리
+
+   - puppeteer[https://github.com/puppeteer/puppeteer]
+   - request[https://github.com/request/request]
+
+3. 크롤링 동작하는 방식
+4. 해당 웹 사이트에 접속한다.
+
+5. 웹 사이트에 있는 태그들을 파싱한다.(cheerio 라이브러리 사용)
+
+- 해당 웹 사이트가 MPA VS SPA에 따라서 웹사이트 파싱 하는 방식이 다릅니다.
+
+3. 파싱된 데이터를 db에 넣는다.
+
+4. MPA VS SPA
+   해당 웹 사이트에 접속한다(HTTP 요청 --> REQ 요청) -->
+   Client는 받는 데이터가 String 형식 -->
+   HTTP 명세서에 있는 바디 부분이 String -->  
+   (<script></script>) --> 이 구문이 동작 X
+   -->크롬 브라우저(V8엔진)가 해당 String -->
+   7가지 단계로 파싱 및 렌더링 함
+
+request로 사용한 경우
+
+let customHeaderRequest = request.defaults({
+headers: {
+"User-Agent":
+"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.81 Safari/537.36",
+},
+});
+customHeaderRequest.get(url, async (err, resp, html) => {
+//파싱 할 내용
+}
+
+const puppeteer = require('puppeteer');
+
+(async () => {
+const browser = await puppeteer.launch({headless: false}); // default is true
+await browser.userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36")
+
+const page = await browser.newPage();
+await page.goto('https://news.ycombinator.com', {waitUntil: 'networkidle2'});
+console.log(await page.evaluate('navigator.userAgent'));
+
+await browser.close();
+})();
